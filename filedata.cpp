@@ -56,11 +56,12 @@ QByteArray fileData::readFile(QString filename)
 
 void fileData::writeFile(QString filename, const QByteArray &data)
 {
+    const QString encryptedSuffix = "enc";
     if(filename.isEmpty())
     {
         return;
     }
-    if(m_fileInfo.suffix() == "enc")
+    if(m_fileInfo.suffix() == encryptedSuffix)
     {
         m_fileExtension.remove(".enc");
     }
@@ -68,7 +69,8 @@ void fileData::writeFile(QString filename, const QByteArray &data)
     {
         m_fileExtension.append(".enc");
     }
-    QFile file(filename + "." + m_fileExtension);
+    const QString filePath(filename + "." + m_fileExtension);
+    QFile file(filePath);
     if(!file.open(QFile::WriteOnly))
     {
         qCritical() << file.errorString();

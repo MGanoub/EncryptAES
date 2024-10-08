@@ -74,17 +74,29 @@ Window {
         anchors.top: fileInfo.bottom
         anchors.topMargin: 20
         spacing: 10
-
+        TextField
+        {
+            id: password
+            placeholderText: "Enter Password"
+        }
         Button {
             id: encryptButton
             text: "Encrypt file"
-            onClicked: myApp.encrypt()
+            onClicked:
+            {
+                myApp.cipherPassword = password.text
+                myApp.encrypt()
+            }
         }
 
         Button {
             id: decryptButton
             text: "Decrypt file"
-            onClicked: myApp.decrypt()
+            onClicked:
+            {
+                myApp.cipherPassword = password.text
+                myApp.decrypt()
+            }
         }
         TextField
         {

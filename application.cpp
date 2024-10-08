@@ -16,7 +16,7 @@ void Application::encrypt()
         return;
     }
     auto data = m_fileData.readFile(m_fileData.path());
-    m_data = m_cipher.encryptAES("1234567", data);
+    m_data = m_cipher.encryptAES(m_cipherPassword, data);
 }
 
 void Application::decrypt()
@@ -26,7 +26,7 @@ void Application::decrypt()
         return;
     }
     auto data = m_fileData.readFile(m_fileData.path());
-    m_data = m_cipher.decryptAES("1234567", data);
+    m_data = m_cipher.decryptAES(m_cipherPassword, data);
 }
 
 void Application::saveFile()
