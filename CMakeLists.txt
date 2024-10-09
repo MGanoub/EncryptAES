@@ -31,7 +31,7 @@ qt_add_qml_module(EncryptAES
         QML_FILES SaveSection.qml
 )
 
-set(OPENSSL_ROOT_DIR "C:/openssl-3.2.0/build")
+set(OPENSSL_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/submodules/openssl-3.2.0/build")
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 include(FindOpenSSL)
 message(WARNING "FindSSL found: ${OPENSSL_FOUND}")
