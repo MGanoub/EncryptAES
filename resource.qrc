@@ -3,5 +3,6 @@
         <file>Assets/folder.png</file>
         <file>Assets/hide.png</file>
         <file>Assets/show.png</file>
+        <file>Assets/check.png</file>
     </qresource>
 </RCC>

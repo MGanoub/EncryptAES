@@ -85,6 +85,7 @@ Item {
                 onClicked:
                 {
                     field.isPasswordShown = !field.isPasswordShown
+                    state = "highlighted"
                 }
             }
         }
@@ -206,6 +207,76 @@ Item {
                 }
             ]
         }
+
+    Item
+    {
+        id: fieldStatesId
+        states: [
+            State {
+                name: "default"
+            },
+            State {
+                name: "Error"
+                when: rootItem.enteredText.length > 0 && rootItem.enteredText.length < 3 && isPasswordField
+                PropertyChanges {
+                    target: fieldRectBg
+                    border.color: "red"
+                }
+                PropertyChanges {
+                    target: passwordIndicator
+                    coloredIndicatorCount: 0
+                }
+                PropertyChanges {
+                    target: passwordIndicator
+                    indicatorColor: "red"
+                }
+                PropertyChanges {
+                    target: floatingPlaceholder
+                    color: "red"
+                }
+            },
+            State {
+                name: "Warning"
+                when: rootItem.enteredText.length > 0 && rootItem.enteredText.length < 5 && isPasswordField
+                PropertyChanges {
+                    target: fieldRectBg
+                    border.color: "orange"
+                }
+                PropertyChanges {
+                    target: passwordIndicator
+                    coloredIndicatorCount: 1
+                }
+                PropertyChanges {
+                    target: passwordIndicator
+                    indicatorColor: "orange"
+                }
+                PropertyChanges {
+                    target: floatingPlaceholder
+                    color: "orange"
+                }
+            },
+            State {
+                name: "success"
+                when: rootItem.enteredText.length >= 5 && isPasswordField
+                PropertyChanges {
+                    target: fieldRectBg
+                    border.color: "green"
+                }
+                PropertyChanges {
+                    target: passwordIndicator
+                    coloredIndicatorCount: 2
+                }
+                PropertyChanges {
+                    target: passwordIndicator
+                    indicatorColor: "green"
+                }
+                PropertyChanges {
+                    target: floatingPlaceholder
+                    color: "green"
+                }
+            }
+        ]
+    }
     }
     Item
     {
@@ -218,18 +289,46 @@ Item {
         visible: rootItem.isPasswordField
         property int indicatorsCount: 3
         property color indicatorColor: "grey"
+        property int coloredIndicatorCount: 1
         Row {
             spacing: 8
             Repeater {
+                id: myRepeaterId
                 model: passwordIndicator.indicatorsCount
                     Rectangle {
                         id: indicator
                         width: (passwordIndicator.width - (8*2))/ passwordIndicator.indicatorsCount
                         height: 2
-                        color: passwordIndicator.indicatorColor
+                        color: index <= passwordIndicator.coloredIndicatorCount? passwordIndicator.indicatorColor: "grey"
                     }
             }
     }
+    }
 
-}
+        Item {
+            id: hintSection
+            anchors.top: rootItem.isPasswordField ? passwordIndicator.bottom: field.bottom
+            anchors.left: field.left
+            anchors.topMargin: 8
+            Row
+            {
+                id: hintRowId
+                spacing: 2
+                anchors.left: hintSection.left
+                Image {
+                    id: hintIconId
+                    source: "qrc:/Assets/check.png"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    fillMode: Image.PreserveAspectFit
+                    sourceSize.height: 18
+                    sourceSize.width: 18
+                    visible: true
+            }
+                Text {
+                    id: hintTextId
+                    text: qsTr("Hint text......")
+                    color: "grey"
+                }
+        }
+        }
 }

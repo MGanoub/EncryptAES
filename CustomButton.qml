@@ -92,7 +92,6 @@ Item {
             }
         }
 
-        // onClicked: enabled = !enabled
         states: [
             State {
                 name: "default"
