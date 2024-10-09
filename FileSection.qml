@@ -85,6 +85,7 @@ Item {
             fileSizeRow.sizeText = myFileData.fileSize
             fileExtension.text = myFileData.fileExtension
             fileDialog.close()
+            myApp.isProcessed = false
         }
         onRejected: {
             myFileData.path = ""

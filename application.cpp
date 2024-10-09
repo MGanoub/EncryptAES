@@ -2,6 +2,7 @@
 
 Application::Application(QObject *parent)
     : QObject{parent}
+    ,m_isProcessed(false)
 {}
 
 fileData* Application::getFileData()
@@ -17,6 +18,8 @@ void Application::encrypt()
     }
     auto data = m_fileData.readFile(m_fileData.path());
     m_data = m_cipher.encryptAES(m_cipherPassword, data);
+    m_isProcessed = true;
+    emit isProcessedChanged(m_isProcessed);
 }
 
 void Application::decrypt()
@@ -27,6 +30,8 @@ void Application::decrypt()
     }
     auto data = m_fileData.readFile(m_fileData.path());
     m_data = m_cipher.decryptAES(m_cipherPassword, data);
+    m_isProcessed = true;
+    emit isProcessedChanged(m_isProcessed);
 }
 
 void Application::saveFile()

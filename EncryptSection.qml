@@ -47,14 +47,16 @@ Item {
         }
 
     }
-    Label
+    Text
     {
         id: progressLabel
         anchors.top: encryptionRootItem.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 20
         anchors.left: encryptionRootItem.left
-        anchors.leftMargin: 10
-        visible: true
+        anchors.leftMargin: 15
+        visible: myApp.isProcessed
         text: "Done file processing..."
+        font.bold: true
+        font.pixelSize: 16
     }
 }
