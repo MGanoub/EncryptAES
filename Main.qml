@@ -8,7 +8,7 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("EncryptAES")
 
     FileDialog {
         id: fileDialog
@@ -137,9 +137,21 @@ Window {
     }
     CustomTextField
     {
-        id: custom
+        id: customText
         width: 250
         anchors.top: encryptionRow.bottom
         anchors.left: encryptionRow.left
+    }
+    CustomButton
+    {
+        id: customButton
+        //width: 250
+        anchors.top: customText.bottom
+        anchors.left: encryptionRow.left
+        anchors.topMargin: 150
+        anchors.leftMargin: 50
+        isEnabled: true
+        iconOnRight: true
+        iconSource: "qrc:/Assets/folder.png"
     }
 }
