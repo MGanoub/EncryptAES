@@ -6,73 +6,52 @@ import Qt.labs.platform
 
 Window {
     width: 640
-    height: 480
+    height: 380
     visible: true
     title: qsTr("EncryptAES")
 
-    FileDialog {
-        id: fileDialog
-        title: "Please choose a file"
-        visible: false
-        //currentFolder: shortcuts.desktop
-        onAccepted: {
-            // console.log("User has selected " + dialogFile.folder);
-            var path = fileDialog.currentFile.toString()
-            // remove prefixed "file:///"
-            path = path.replace(/^(file:\/{3})/, "")
-            console.log("path" + path)
-            myFileData.path = path
-            filePathLabel.text = path
-            filesize.sizeText = myFileData.fileSize
-            fileExtension.text = myFileData.fileExtension
-            fileDialog.close()
-        }
-        onRejected: {
-            myFileData.path = ""
-            filePathLabel.text = ""
-            fileDialog.close()
-        }
+    FileSection
+    {
+        id: fileSectionId
+        width: parent.width
+        anchors.top: parent.top
+        anchors.left: parent.left
     }
 
-    Button {
-        id: selectFileButton
-        text: "Select a file"
-        onClicked: fileDialog.open()
+    Rectangle
+    {
+        id: dividerLine
+        width: parent.width
+        height: 2
+        color: "grey"
+        anchors.top: fileSectionId.bottom
+        anchors.topMargin: 10
     }
 
-    GroupBox {
-        id: fileInfo
-        width: parent.width - 40
-        padding: 20
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: selectFileButton.bottom
+    EncryptSection
+    {
+        id: encryptSectionId
+        width: parent.width
+        anchors.top: dividerLine.bottom
+        anchors.left: parent.left
+        anchors.topMargin: 10
+        anchors.leftMargin: 10
+    }
 
-        title: "File info"
-        ColumnLayout {
-            anchors {
-                topMargin: 10
-            }
-            spacing: 2
-            Label {
-                id: filePathLabel
-                text: ""
-            }
-            Label {
-                id: filesize
-                property string sizeText: ""
-                text: sizeText + " bytes"
-            }
+    SaveSection
+    {
+        id: saveSectionId
+        width: parent.width
+        anchors.top: encryptSectionId.bottom
+        anchors.left: parent.left
+        anchors.topMargin: 50
+        anchors.leftMargin: 10
+    }
 
-            Label {
-                id: fileExtension
-                text: ""
-            }
-        }
-    } // groupbox
-
+    /*
     RowLayout {
         id: encryptionRow
-        anchors.top: fileInfo.bottom
+        anchors.top: fileDetailsComponent.bottom
         anchors.topMargin: 20
         spacing: 10
         TextField
@@ -154,4 +133,5 @@ Window {
         iconOnRight: true
         iconSource: "qrc:/Assets/folder.png"
     }
+    */
 }

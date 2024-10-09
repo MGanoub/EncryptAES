@@ -3,9 +3,11 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Item {
+    id: rootItem
     property string iconSource: ""
     property bool iconOnRight: false
-
+    property string buttonText: ""
+    signal clicked
     implicitWidth: parent.width - anchors.leftMargin - anchors.rightMargin
     property alias isEnabled: root.enabled
     Button {
@@ -15,14 +17,14 @@ Item {
                                                    backgroundDefaultColor, 1.2)
         property color contentItemTextColor: "white"
         hoverEnabled: false
-        implicitWidth: parent.width
+        implicitWidth: rootItem.width
         topPadding: 20
         bottomPadding: 20
         leftPadding: 16
         rightPadding: 16
         enabled: true
 
-        text: "Button"
+        text: buttonText
         contentItem:
             Item {
 
@@ -68,10 +70,12 @@ Item {
 
         background: Rectangle {
             id: bgRect
-            implicitWidth: parent.width
+            implicitWidth: root.width
             color: root.down ? root.backgroundPressedColor : root.backgroundDefaultColor
             radius: 16
         }
+
+        onClicked: rootItem.clicked()
 
         onHighlightedChanged: {
             if (highlighted) {

@@ -3,12 +3,12 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Item {
+    id: rootItem
     property string placeholderLabel: "Label"
     property bool isPasswordField: false
-    id: customTextField
+    property alias enteredText: field.text
     implicitWidth: parent.width
     TextField {
-        property string hintText: "Label"
         id: field
         width: parent.implicitWidth
         height: 54
@@ -18,7 +18,6 @@ Item {
             right: parent.right
             leftMargin: 16
             rightMargin: 16
-            topMargin: 24
         }
         leftPadding: 20
         rightPadding: 20
@@ -40,7 +39,7 @@ Item {
             rightPadding: 20
             topPadding: 17
             bottomPadding: 17
-            text: field.hintText
+            text: rootItem.placeholderLabel
             color: "gray"
         }
         Rectangle {
@@ -51,7 +50,7 @@ Item {
         }
 
         Text {
-            text: field.hintText
+            text: rootItem.placeholderLabel
             id: floatingPlaceholder
             anchors.top: placeholdersection.top
             anchors.left: placeholdersection.left

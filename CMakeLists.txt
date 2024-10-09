@@ -25,6 +25,10 @@ qt_add_qml_module(apptestAES
         QML_FILES CustomTextField.qml
         QML_FILES CustomButton.qml
         RESOURCES resource.qrc
+        QML_FILES FileSection.qml
+        QML_FILES EncryptSection.qml
+        QML_FILES
+        QML_FILES SaveSection.qml
 )
 
 
