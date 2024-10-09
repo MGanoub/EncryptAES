@@ -20,6 +20,8 @@ qt_add_qml_module(apptestAES
         SOURCES cipher.h cipher.cpp
         SOURCES fileData.h fileData.cpp
         SOURCES application.h application.cpp
+        QML_FILES CustomTextField.qml
+        QML_FILES CustomButton.qml
 )
 
 

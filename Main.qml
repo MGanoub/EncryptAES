@@ -71,6 +71,7 @@ Window {
     } // groupbox
 
     RowLayout {
+        id: encryptionRow
         anchors.top: fileInfo.bottom
         anchors.topMargin: 20
         spacing: 10
@@ -133,5 +134,12 @@ Window {
             myFileData.savePath = ""
             saveFolderDialog.close()
         }
+    }
+    CustomTextField
+    {
+        id: custom
+        width: 250
+        anchors.top: encryptionRow.bottom
+        anchors.left: encryptionRow.left
     }
 }
