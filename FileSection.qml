@@ -93,5 +93,4 @@ Item {
             fileDialog.close()
         }
     }
-
 }

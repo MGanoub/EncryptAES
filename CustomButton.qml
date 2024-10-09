@@ -25,8 +25,7 @@ Item {
         enabled: true
 
         text: buttonText
-        contentItem:
-            Item {
+        contentItem: Item {
 
             Image {
                 visible: iconSource !== null && !iconOnRight
@@ -40,7 +39,6 @@ Item {
                 anchors.rightMargin: 8
                 anchors.bottom: contextText.bottom
                 anchors.top: contextText.top
-
             }
 
             Text {

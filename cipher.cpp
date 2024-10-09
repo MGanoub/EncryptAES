@@ -43,12 +43,6 @@ QByteArray Cipher::encryptAES(QByteArray passphrase, QByteArray &data)
     int c_len = len + AES_BLOCK_SIZE, f_len = 0;
     unsigned char *ciphertext = (unsigned char*)malloc(c_len);
 
-    if(!EVP_EncryptInit_ex(en, NULL, NULL, NULL, NULL))
-    {
-        qCritical() << "EVP_EncryptInit_ex() failed " << ERR_error_string(ERR_get_error(), NULL);
-        return QByteArray();
-    }
-
     // May have to repeat this for large files
 
     if(!EVP_EncryptUpdate(en, ciphertext, &c_len,(unsigned char *)input, len))

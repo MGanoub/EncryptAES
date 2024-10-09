@@ -10,16 +10,14 @@ Window {
     visible: true
     title: qsTr("EncryptAES")
 
-    FileSection
-    {
+    FileSection {
         id: fileSectionId
         width: parent.width
         anchors.top: parent.top
         anchors.left: parent.left
     }
 
-    Rectangle
-    {
+    Rectangle {
         id: dividerLine
         width: parent.width
         height: 2
@@ -28,8 +26,7 @@ Window {
         anchors.topMargin: 10
     }
 
-    EncryptSection
-    {
+    EncryptSection {
         id: encryptSectionId
         width: parent.width
         anchors.top: dividerLine.bottom
@@ -38,8 +35,7 @@ Window {
         anchors.leftMargin: 10
     }
 
-    SaveSection
-    {
+    SaveSection {
         id: saveSectionId
         width: parent.width
         anchors.top: encryptSectionId.bottom
