@@ -7,9 +7,11 @@ Item {
     property string placeholderLabel: "Label"
     property bool isPasswordField: false
     property alias enteredText: field.text
+
     implicitWidth: parent.width
     TextField {
         id: field
+        property bool isPasswordShown: false
         width: parent.implicitWidth
         height: 54
         anchors {
@@ -30,6 +32,8 @@ Item {
             border.color: "darkgray"
             border.width: 0.5
         }
+
+        echoMode: field.isPasswordShown ? TextInput.Normal : TextInput.Password
 
         Text {
             id: placeholdersection
@@ -64,7 +68,7 @@ Item {
 
         Image {
             id: showPasswordId
-            source: "qrc:/Assets/hide.png"
+            source: field.isPasswordShown? "qrc:/Assets/show.png" :"qrc:/Assets/hide.png"
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             fillMode: Image.PreserveAspectFit
             sourceSize.height: 18
@@ -74,6 +78,15 @@ Item {
             anchors.rightMargin: 20
             anchors.bottom: field.bottom
             anchors.top: field.top
+            MouseArea
+            {
+                id: showPasswordArea
+                anchors.fill: parent
+                onClicked:
+                {
+                    field.isPasswordShown = !field.isPasswordShown
+                }
+            }
         }
 
 
