@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>Assets/folder.png</file>
+        <file>Assets/hide.png</file>
+        <file>Assets/show.png</file>
     </qresource>
 </RCC>

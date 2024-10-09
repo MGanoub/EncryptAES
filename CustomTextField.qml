@@ -62,6 +62,21 @@ Item {
             visible: false
         }
 
+        Image {
+            id: showPasswordId
+            source: "qrc:/Assets/hide.png"
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            fillMode: Image.PreserveAspectFit
+            sourceSize.height: 18
+            sourceSize.width: 18
+            visible: rootItem.isPasswordField
+            anchors.right: field.right
+            anchors.rightMargin: 20
+            anchors.bottom: field.bottom
+            anchors.top: field.top
+        }
+
+
 
         Item
         {
@@ -179,21 +194,29 @@ Item {
             ]
         }
     }
-
-    PageIndicator
+    Item
     {
         id: passwordIndicator
-        width: parent.width
-        count: 3
-        spacing: 8
-        currentIndex: 0
+        width: field.width
         anchors.top: field.bottom
         anchors.left: field.left
+        anchors.right: field.right
         anchors.topMargin: 8
-        delegate: Rectangle{
-          implicitHeight: 2
-          implicitWidth: field.width / passwordIndicator.count
-          color: 'blue'
-          }
+        visible: rootItem.isPasswordField
+        property int indicatorsCount: 3
+        property color indicatorColor: "grey"
+        Row {
+            spacing: 8
+            Repeater {
+                model: passwordIndicator.indicatorsCount
+                    Rectangle {
+                        id: indicator
+                        width: (passwordIndicator.width - (8*2))/ passwordIndicator.indicatorsCount
+                        height: 2
+                        color: passwordIndicator.indicatorColor
+                    }
+            }
     }
+
+}
 }

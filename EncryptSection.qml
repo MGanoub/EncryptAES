@@ -15,7 +15,8 @@ Item {
         CustomTextField
         {
             id: password
-            placeholderLabel: "Enter Password"
+            placeholderLabel: "Enter Encryption Password"
+            isPasswordField: true
         }
         }
         Item {

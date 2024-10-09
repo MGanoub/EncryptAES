@@ -16,11 +16,11 @@ Item {
             width: 250
             CustomTextField {
                 id: saveFileName
-                placeholderLabel: "Save file Name"
+                placeholderLabel: "Enter file name to save"
             }
         }
         Item {
-            id: encryptId
+            id: saveFileId
             width: 150
             CustomButton {
                 id: saveButton
