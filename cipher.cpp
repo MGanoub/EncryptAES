@@ -50,7 +50,7 @@ QByteArray Cipher::encryptAES(QByteArray passphrase, QByteArray &data)
         qCritical() << "EVP_EncryptUpdate() failed " << ERR_error_string(ERR_get_error(), NULL);
         return QByteArray();
     }
-
+    // https://linux.die.net/man/3/evp_encryptupdate
     if(!EVP_EncryptFinal(en, ciphertext+c_len, &f_len))
     {
         qCritical() << "EVP_EncryptFinal_ex() failed "  << ERR_error_string(ERR_get_error(), NULL);
